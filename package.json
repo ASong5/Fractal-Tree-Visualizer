@@ -1,0 +1,26 @@
+{
+    "name": "fractal-tree",
+    "version": "1.0.0",
+    "description": "Fractal Tree Visualizer",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ASong5/Fractal-Tree-Visualizer.git"
+    },
+    "keywords": [
+      "fractal",
+      "tree",
+      "animation",
+      "visualization"
+    ],
+    "author": "Andrew Song",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/ASong5/Fractal-Tree-Visualizer/issues"
+    },
+    "homepage": "https://github.com/ASong5/Fractal-Tree-Visualizer#readme",
+    "dependencies": {}
+  }
