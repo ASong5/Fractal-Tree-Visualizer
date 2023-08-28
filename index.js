@@ -40,9 +40,9 @@ class LSystem {
   generateFractal(ctx, id, sentence, branchSize) {
     if (id === 0) {
       ctx.translate(canvas.width / 2, canvas.height);
-      ctx.shadowColor = "teal";
+      ctx.shadowColor = "brown";
       ctx.shadowBlur = 14;
-
+      ctx.strokeStyle = "#573E30";
       let idx = 0;
       while (idx < sentence.length) {
         const symbol = sentence[idx];
@@ -51,6 +51,7 @@ class LSystem {
           ctx.beginPath();
           ctx.moveTo(0, 0);
           ctx.lineTo(0, -branchSize);
+          if (symbol === "0") ctx.strokeStyle = "green";
           ctx.stroke();
           ctx.translate(0, -branchSize);
           ctx.closePath();
@@ -66,35 +67,34 @@ class LSystem {
       }
     } else if (id === 1) {
       ctx.translate(canvas.width / 2, canvas.height);
-      ctx.shadowColor = "teal";
+      ctx.shadowColor = "green";
       ctx.shadowBlur = 14;
-
-      ctx.rotate(Math.PI / 10);
+      ctx.strokeStyle = "#573E30";
+      ctx.rotate(Math.PI / 16);
 
       let idx = 0;
+      let len = branchSize;
       while (idx < sentence.length) {
         const symbol = sentence[idx];
 
         if (symbol === "F") {
           ctx.beginPath();
           ctx.moveTo(0, 0);
-          ctx.lineTo(0, -branchSize);
+          ctx.lineTo(0, -len);
           ctx.stroke();
-          ctx.translate(0, -branchSize);
+          ctx.translate(0, -len);
           ctx.closePath();
-        } 
-        else if(symbol === "+"){
+        } else if (symbol === "+") {
           ctx.rotate(-(5 * Math.PI) / 36);
-        }
-        else if(symbol === "-"){
+        } else if (symbol === "-") {
           ctx.rotate((5 * Math.PI) / 36);
-        }
-        else if (symbol === "[") {
-          ctx.save()
+        } else if (symbol === "[") {
+          ctx.strokeStyle = "#573E30";
+          ctx.save();
+          ctx.strokeStyle = "green";
         } else if (symbol === "]") {
-         ctx.restore();
+          ctx.restore();
         }
-
         idx++;
       }
     }
@@ -104,14 +104,11 @@ class LSystem {
 const canvas = document.getElementById("canvas");
 if (canvas.getContext) {
   const ctx = canvas.getContext("2d");
-  ctx.strokeStyle = "white";
-  ctx.fillStyle = "green";
 
   const lSystem = new LSystem();
-  // const sentence = lSystem.grammarToString(lSystem.grammar.fractalBTree, 11);
-  // lSystem.generateFractal(ctx, 0, sentence, 2.4);
+  const sentence = lSystem.grammarToString(lSystem.grammar.fractalBTree, 8);
+  lSystem.generateFractal(ctx, 0, sentence, 2.4);
 
-  const sentence = lSystem.grammarToString(lSystem.grammar.fractalPlant, 6);
-  console.log(sentence)
-  lSystem.generateFractal(ctx, 1, sentence, 1.8);
+  // const sentence = lSystem.grammarToString(lSystem.grammar.fractalPlant, 7);
+  // lSystem.generateFractal(ctx, 1, sentence, 1.8);
 }
